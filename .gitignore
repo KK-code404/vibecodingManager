@@ -1,0 +1,16 @@
+node_modules/
+.pnpm-store/
+.cache/
+dist/
+data/
+.env
+.env.*
+!.env.example
+*.env
+*.log
+*.sqlite*
+*.pem
+*.key
+__pycache__/
+test-results/
+playwright-report/

@@ -1,0 +1,16 @@
+name: vcm-control-test
+x-service: &service
+  image: python:3.12-alpine
+  command: [python, -m, http.server, '8000']
+  healthcheck:
+    test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000')"]
+    interval: 2s
+    timeout: 2s
+    retries: 15
+services:
+  frontend: *service
+  api: *service
+  db: *service
+  redis: *service
+  worker: *service
+  beat: *service

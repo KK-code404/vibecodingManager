@@ -1,0 +1,22 @@
+{
+  "oilorder": {
+    "composeProject": "categoryb-order",
+    "services": ["frontend", "api", "db", "redis", "worker", "beat"],
+    "controlledServices": ["frontend", "api", "worker", "beat"],
+    "dependencies": ["db", "redis"],
+    "stopOrder": ["frontend", "beat", "worker", "api"],
+    "startOrder": ["api", "worker", "beat", "frontend"],
+    "readyAfter": "api",
+    "readiness": {"type": "container", "service": "api"}
+  },
+  "projectmanager": {
+    "composeProject": "projectmanager",
+    "services": ["project-manager"],
+    "controlledServices": ["project-manager"],
+    "dependencies": [],
+    "stopOrder": ["project-manager"],
+    "startOrder": ["project-manager"],
+    "readyAfter": "project-manager",
+    "readiness": {"type": "http", "url": "http://127.0.0.1:5174/api/health"}
+  }
+}
